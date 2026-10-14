@@ -1,0 +1,15 @@
+﻿node_modules/
+dist/
+build-resources/*
+!build-resources/icons/
+!build-resources/icons/**
+!build-resources/installer.nsh
+release/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+*.tmp
+/.spread-ai/

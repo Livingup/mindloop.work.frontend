@@ -1,0 +1,503 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --app-bg: 246 248 251;
+  --app-shell: 248 250 252;
+  --app-rail: 238 242 246;
+  --app-surface: 255 255 255;
+  --app-surface-muted: 248 250 252;
+  --app-surface-hover: 241 245 249;
+  --app-selected: 226 232 240;
+  --app-selected-strong: 38 58 99;
+  --app-border: 203 213 225;
+  --app-border-strong: 148 163 184;
+  --app-text-primary: 15 23 42;
+  --app-text-secondary: 71 85 105;
+  --app-text-muted: 100 116 139;
+  --app-text-subtle: 148 163 184;
+  --app-accent: 38 58 99;
+  --app-accent-hover: 48 72 117;
+  --app-accent-muted: 79 111 150;
+  --app-overlay: 15 23 42;
+  --app-danger: 185 28 28;
+  --app-danger-hover: 153 27 27;
+  --app-danger-surface: 254 242 242;
+  --app-danger-border: 254 202 202;
+  --app-warning: 180 83 9;
+  --app-warning-surface: 255 251 235;
+  --app-warning-border: 253 230 138;
+  --app-success: 4 120 87;
+  --app-success-surface: 236 253 245;
+  --app-success-border: 167 243 208;
+  --context-compression-bg: #F5F1FF;
+  --context-compression-border: #DDD2FF;
+  --context-compression-accent: #6D4AFF;
+  --summary-panel-header-bg: #EEE8FF;
+  --summary-panel-header-text: #4F3BC9;
+  --summary-panel-header-border: #DDD2FF;
+  --summary-panel-body-bg: #FFFFFF;
+  --terminal-bg: #0d0f10;
+  --terminal-fg: #e2e8f0;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: rgb(var(--app-bg));
+  color: rgb(var(--app-text-primary));
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-color: rgba(148, 163, 184, 0.32) transparent;
+  scrollbar-width: thin;
+}
+
+html,
+body,
+#root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  background: rgb(var(--app-bg));
+}
+
+body {
+  overflow: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.electron-drag-region {
+  -webkit-app-region: drag;
+}
+
+.electron-no-drag {
+  -webkit-app-region: no-drag;
+}
+
+.electron-drag-region .scene-tabs-scroll-container::-webkit-scrollbar,
+.electron-drag-region .scene-tabs-scroll-container::-webkit-scrollbar-thumb,
+.electron-drag-region .scene-tabs-scroll-container::-webkit-scrollbar-track {
+  -webkit-app-region: no-drag;
+}
+
+.prose-stream pre {
+  overflow: auto;
+  border-radius: 0.75rem;
+  background: rgba(241, 245, 249, 0.92);
+  padding: 1rem;
+}
+
+.prose-stream code {
+  color: #1e293b;
+}
+
+.html-document {
+  max-width: 100%;
+  color: rgb(var(--app-text-primary));
+  font-size: 0.925rem;
+  line-height: 1.72;
+  overflow-wrap: anywhere;
+}
+
+.html-document article {
+  padding: 0;
+  font-size: 0.925rem;
+  line-height: 1.72;
+}
+
+.html-document header {
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgb(var(--app-border) / 0.72);
+}
+
+.html-document h1,
+.html-document h2,
+.html-document h3,
+.html-document p,
+.html-document ol,
+.html-document ul,
+.html-document dl,
+.html-document blockquote,
+.html-document pre,
+.html-document table,
+.html-document dd,
+.html-document footer {
+  margin: 0;
+}
+
+.html-document h1 {
+  color: rgb(var(--app-text-primary));
+  font-size: 1.04rem;
+  font-weight: 780;
+  line-height: 1.35;
+}
+
+.html-document h2 {
+  color: rgb(var(--app-text-primary));
+  font-size: 0.94rem;
+  font-weight: 760;
+  letter-spacing: 0.01em;
+}
+
+.html-document header dl {
+  margin-top: 0.6rem;
+}
+
+.html-document dt {
+  margin-bottom: 0.25rem;
+  color: rgb(var(--app-text-secondary));
+  font-size: 0.74rem;
+  font-weight: 720;
+  text-transform: uppercase;
+}
+
+.html-document dd {
+  color: rgb(var(--app-accent));
+  overflow-wrap: anywhere;
+}
+
+.html-document section,
+.html-document footer {
+  padding: 0.85rem 0 0;
+}
+
+.html-document section + section,
+.html-document section + footer {
+  margin-top: 0.85rem;
+  border-top: 1px solid rgb(var(--app-border) / 0.55);
+}
+
+.html-document > h1,
+.html-document > h2,
+.html-document > h3,
+.html-document > p,
+.html-document > ol,
+.html-document > ul,
+.html-document > blockquote,
+.html-document > pre,
+.html-document > table,
+.html-document section > p,
+.html-document section > ol,
+.html-document section > ul,
+.html-document section > blockquote,
+.html-document section > pre,
+.html-document section > table,
+.html-document footer > ol {
+  margin-top: 0.65rem;
+}
+
+.html-document > :first-child {
+  margin-top: 0;
+}
+
+.html-document ol,
+.html-document ul {
+  padding-left: 1.25rem;
+  list-style-position: outside;
+}
+
+.html-document ul {
+  list-style-type: disc;
+}
+
+.html-document ol {
+  list-style-type: decimal;
+}
+
+.html-document li > ol,
+.html-document li > ul {
+  margin-top: 0.35rem;
+}
+
+.html-document ul ul {
+  padding-left: 1.1rem;
+  list-style: none;
+}
+
+.html-document ul ul > li {
+  position: relative;
+}
+
+.html-document ul ul > li::before {
+  position: absolute;
+  left: -0.95rem;
+  color: rgb(var(--app-text-muted));
+  content: "–";
+}
+
+.html-document ol ol {
+  list-style-type: lower-alpha;
+}
+
+.html-document ol ol ol {
+  list-style-type: lower-roman;
+}
+
+.html-document li + li {
+  margin-top: 0.55rem;
+}
+
+.html-document blockquote {
+  border-left: 3px solid rgb(var(--app-border));
+  padding: 0.75rem 0.9rem;
+  color: rgb(var(--app-text-secondary));
+}
+
+.html-document pre {
+  overflow: auto;
+  border-radius: 0.75rem;
+  background: rgb(var(--app-overlay));
+  padding: 0.85rem;
+  color: rgb(var(--app-surface));
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.html-document code {
+  border-radius: 0;
+  background: transparent;
+  padding: 0 0.08rem;
+  color: #0f4c81;
+  font-size: 0.88em;
+  font-weight: 720;
+  letter-spacing: 0.005em;
+}
+
+.html-document pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.html-document table {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid rgb(var(--app-border) / 0.76);
+  border-radius: 0.75rem;
+  font-size: 0.84rem;
+}
+
+.html-document th,
+.html-document td {
+  border-bottom: 1px solid rgb(var(--app-border) / 0.72);
+  padding: 0.6rem 0.7rem;
+  color: rgb(var(--app-text-primary));
+  text-align: left;
+  vertical-align: top;
+}
+
+.html-document th {
+  background: rgb(var(--app-surface-hover));
+  color: rgb(var(--app-text-primary));
+  font-weight: 740;
+}
+
+.html-document tr:last-child > th,
+.html-document tr:last-child > td {
+  border-bottom: 0;
+}
+
+.html-document img {
+  max-width: 100%;
+  border-radius: 0.75rem;
+}
+
+.html-document hr {
+  border: 0;
+  border-top: 1px solid rgb(var(--app-border) / 0.7);
+  margin: 0.85rem 0;
+}
+
+.html-document sup {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  margin-left: 0.35rem;
+  vertical-align: super;
+}
+
+.html-document sup a,
+.html-document sup span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  border-radius: 999px;
+  background: rgb(var(--app-selected));
+  color: rgb(var(--app-accent));
+  font-size: 0.72rem;
+  font-weight: 760;
+  line-height: 1.35rem;
+  text-decoration: none;
+}
+
+.html-document sup a:hover {
+  background: rgb(var(--app-surface-hover));
+  color: rgb(var(--app-accent-hover));
+}
+
+.html-document footer > ol {
+  display: grid;
+  gap: 0.55rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.html-document footer li {
+  padding: 0.15rem 0 0.2rem;
+}
+
+.html-document footer h3 {
+  min-width: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.html-document a {
+  color: #2563eb;
+  text-decoration: none;
+  text-underline-offset: 0.16em;
+  overflow-wrap: anywhere;
+}
+
+.html-document a:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.html-document small {
+  color: rgb(var(--app-text-secondary));
+  font-size: 0.78rem;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track-piece,
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background: rgba(148, 163, 184, 0.32);
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.46);
+  background-clip: content-box;
+}
+
+.scene-tabs-scrollbar-hit-region {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 10px;
+  pointer-events: none;
+}
+
+.mobile-scene-tabs-header-slot .scene-tabs-scroll-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-scene-tabs-header-slot .scene-tabs-scroll-container::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.mobile-horizontal-scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-horizontal-scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.execution-monitor-scrollbar {
+  scrollbar-color: rgba(148, 163, 184, 0.32) transparent;
+  scrollbar-width: thin;
+}
+
+.execution-monitor-scrollbar::-webkit-scrollbar-track,
+.execution-monitor-scrollbar::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+
+.execution-monitor-scrollbar::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  background: rgba(148, 163, 184, 0.32);
+  background-clip: content-box;
+}
+
+.execution-monitor-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.46);
+  background-clip: content-box;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar {
+  background: transparent !important;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar.vertical {
+  width: 10px !important;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar.horizontal {
+  height: 10px !important;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar > .scra {
+  display: none !important;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar.vertical > .slider {
+  left: 2px !important;
+  width: 6px !important;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar.horizontal > .slider {
+  top: 2px !important;
+  height: 6px !important;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar > .slider {
+  border-radius: 999px !important;
+  background: rgba(148, 163, 184, 0.32) !important;
+}
+
+.xterm .xterm-scrollable-element > .scrollbar:hover > .slider {
+  background: rgba(148, 163, 184, 0.46) !important;
+}

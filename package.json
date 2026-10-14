@@ -1,0 +1,107 @@
+{
+  "name": "spread-ai-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.mjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "electron:dev": "node scripts/electron-dev.mjs",
+    "electron:start": "npm run build && electron .",
+    "package:win": "node scripts/package-win.mjs",
+    "preview": "vite preview",
+    "test:chat-persistence": "node --test scripts/chat-bubble-persistence.test.mjs",
+    "test:chat-agent-cache": "node --test scripts/chat-agent-cache-isolation.test.mjs scripts/chat-multi-agent-isolation.test.mjs",
+    "test:chat-ui-isolation": "node --test scripts/chat-ui-isolation.test.mjs",
+    "test:runtime-auth": "node --test scripts/runtime-auth-invalidation.test.mjs",
+    "test:task-note": "node --test scripts/task-note-view.test.mjs",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.59.16",
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "mermaid": "^12.1.0",
+    "pdfjs-dist": "^5.7.284",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
+    "react-router-dom": "^6.28.0",
+    "react-virtuoso": "^4.12.3",
+    "remark-gfm": "^4.0.0",
+    "zustand": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "electron": "^42.0.1",
+    "electron-builder": "^26.0.12",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  },
+  "build": {
+    "appId": "mindloop.spread-ai",
+    "productName": "Spread AI",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "build-resources/backend",
+        "to": "backend"
+      },
+      {
+        "from": "build-resources/runtime-config",
+        "to": "runtime-config"
+      },
+      {
+        "from": "build-resources/frontend",
+        "to": "frontend"
+      },
+      {
+        "from": "build-resources/icons",
+        "to": "icons"
+      }
+    ],
+    "win": {
+      "icon": "build-resources/icons/icon.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Spread AI",
+      "include": "build-resources/installer.nsh"
+    },
+    "directories": {
+      "output": "release"
+    }
+  }
+}
